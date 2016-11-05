@@ -65,16 +65,29 @@ GVAR(targetSpeedDirection) = [1, 1, 1, 1];
 GVAR(targetRange) = [0, 0, 0, 0];
 
 GVAR(showWind2) = false;
+GVAR(showCoriolis) = false;
 GVAR(elevationOutput) = [0, 0, 0, 0];
 GVAR(windage1Output) = [0, 0, 0, 0];
 GVAR(windage2Output) = [0, 0, 0, 0];
 GVAR(leadOutput) = [0, 0, 0, 0];
 GVAR(tofOutput) = [0, 0, 0, 0];
 GVAR(velocityOutput) = [0, 0, 0, 0];
+GVAR(verticalCoriolisOutput) = [0, 0, 0, 0];
+GVAR(horizontalCoriolisOutput) = [0, 0, 0, 0];
+GVAR(spinDriftOutput) = [0, 0, 0, 0];
+
+GVAR(truingDropMode) = 0;
+GVAR(truingDropRangeData) = [0, 0];
+GVAR(truingDropDropData) = [0, 0, 0];
+GVAR(truingDropC1) = 0;
+GVAR(truingDropMuzzleVelocity) = 0;
+
+GVAR(targetSolutionInput) = nil;
 
 GVAR(showMainPage) = true;
 GVAR(showAddNewGun) = false;
 GVAR(showAtmoEnvData) = false;
+GVAR(showC1BallisticCoefficientData) = false;
 GVAR(showGunAmmoData) = false;
 GVAR(showGunList) = false;
 GVAR(showMuzzleVelocityData) = false;
@@ -85,3 +98,4 @@ GVAR(showTargetData) = false;
 GVAR(showTargetRangeAssist) = false;
 GVAR(showTargetSpeedAssist) = false;
 GVAR(showTargetSpeedAssistTimer) = false;
+GVAR(showTruingDrop) = false;

@@ -21,5 +21,4 @@ private _target = 0 max _this min 3;
 
 GVAR(currentTarget) = _target;
 call FUNC(update_target_selection);
-
-[] call FUNC(calculate_target_solution);
+call FUNC(update_target_solution);

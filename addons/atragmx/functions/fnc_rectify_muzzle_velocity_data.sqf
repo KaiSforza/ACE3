@@ -18,11 +18,11 @@
 private _minTemp = -50;
 
 {
-    private _temp = _x select 0;
-    if (_temp < _minTemp) then {
-        _x set [0, _minTemp];
-    } else {
-        if ((_x select 1) > 0) then {
+    if ((_x select 1) > 0) then {
+        private _temp = _x select 0;
+        if (_temp < _minTemp) then {
+            _x set [0, _minTemp];
+        } else {
             _minTemp = _temp;
         };
     };

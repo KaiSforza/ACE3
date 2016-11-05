@@ -1,6 +1,6 @@
 /*
  * Author: Ruthberg
- * Toggles the muzzle velocity data screen on/off
+ * Toggles the c1 ballistic coefficient data screen on/off
  *
  * Arguments:
  * Apply new data? <NUMBER>
@@ -9,7 +9,7 @@
  * Nothing
  *
  * Example:
- * 1 call ace_atragmx_fnc_toggle_muzzle_velocity_data
+ * 1 call ace_atragmx_fnc_toggle_c1_ballistic_coefficient_data
  *
  * Public: No
  */
@@ -17,17 +17,17 @@
 
 if (!(missionNamespace getVariable [QEGVAR(advanced_ballistics,enabled), false])) exitWith {};
 
-if (ctrlVisible 16000) then {
-    false call FUNC(show_muzzle_velocity_data);
+if (ctrlVisible 17000) then {
+    false call FUNC(show_c1_ballistic_coefficient_data);
     true call FUNC(show_main_page);
 
     if (_this == 1) then {
-        [true, true] call FUNC(recalculate_muzzle_velocity);
+        [true, true] call FUNC(recalculate_c1_ballistic_coefficient);
         call FUNC(calculate_target_solution);
     } else {
-        call FUNC(update_muzzle_velocity_data);
+        call FUNC(update_c1_ballistic_coefficient_data);
     };
 } else {
-    true call FUNC(show_muzzle_velocity_data);
+    true call FUNC(show_c1_ballistic_coefficient_data);
     false call FUNC(show_main_page);
 };

@@ -17,20 +17,34 @@
 
 {
     private _temperature = -50 max parseNumber(ctrlText _x) min 160;
-    if (GVAR(currentUnit) != 2) then {
+    if (GVAR(currentUnit) == 1) then {
         _temperature = (_temperature - 32) / 1.8;
     };
     ((GVAR(workingMemory) select 18) select _forEachIndex) set [0, _temperature];
 } forEach [160021, 160022, 160023, 160024, 160025, 160026, 160027];
 {
     private _muzzleVelocity = parseNumber(ctrlText _x);
-    if (GVAR(currentUnit) != 2) then {
+    if (GVAR(currentUnit) == 1) then {
         _muzzleVelocity = _muzzleVelocity / 3.2808399;
     };
     ((GVAR(workingMemory) select 18) select _forEachIndex) set [1, 0 max _muzzleVelocity min 1400];
 } forEach [160031, 160032, 160033, 160034, 160035, 160036, 160037];
 
 call FUNC(rectify_muzzle_velocity_data);
+
+{
+    private _distance = 0 max parseNumber(ctrlText _x) min 4000;
+    if (GVAR(currentUnit) != 2) then {
+        _distance = _distance * 0.9144;
+    };
+    ((GVAR(workingMemory) select 19) select _forEachIndex) set [0, _distance];
+} forEach [170021, 170022, 170023, 170024, 170025, 170026, 170027];
+{
+    private _c1 = 0 max parseNumber(ctrlText _x) min 2.0;
+    ((GVAR(workingMemory) select 19) select _forEachIndex) set [1, _c1];
+} forEach [170031, 170032, 170033, 170034, 170035, 170036, 170037];
+
+call FUNC(rectify_c1_ballistic_coefficient_data);
 
 GVAR(altitude) = -1000 max parseNumber(ctrlText 130030) min 20000;
 GVAR(temperature) = -50 max parseNumber(ctrlText 130040) min 160;
@@ -66,11 +80,11 @@ if ((ctrlText 140051) == ">") then {
 GVAR(targetRange) set [GVAR(currentTarget), 0 max abs(parseNumber(ctrlText 140060)) min 4000];
 if (GVAR(currentUnit) != 2) then {
     GVAR(windSpeed1) set [GVAR(currentTarget), (GVAR(windSpeed1) select GVAR(currentTarget)) * 0.44704];
-    GVAR(windSpeed2) set [GVAR(currentTarget), (GVAR(windSpeed2) select GVAR(currentTarget))  * 0.44704];
-    GVAR(targetSpeed) set [GVAR(currentTarget), (GVAR(targetSpeed) select GVAR(currentTarget))  * 0.44704];
+    GVAR(windSpeed2) set [GVAR(currentTarget), (GVAR(windSpeed2) select GVAR(currentTarget)) * 0.44704];
+    GVAR(targetSpeed) set [GVAR(currentTarget), (GVAR(targetSpeed) select GVAR(currentTarget)) * 0.44704];
 };
 if (GVAR(currentUnit) == 1) then {
-    GVAR(targetRange) set [GVAR(currentTarget), (GVAR(targetRange) select GVAR(currentTarget))  * 0.9144];
+    GVAR(targetRange) set [GVAR(currentTarget), (GVAR(targetRange) select GVAR(currentTarget)) * 0.9144];
 };
 
 private ["_boreHeight", "_bulletMass", "_bulletDiameter", "_airFriction", "_rifleTwist", "_muzzleVelocity", "_zeroRange"];
@@ -84,7 +98,7 @@ if (missionNamespace getVariable [QEGVAR(advanced_ballistics,enabled), false]) t
 };
 _rifleTwist = parseNumber(ctrlText 120040);
 _muzzleVelocity = parseNumber(ctrlText 120050);
-_zeroRange = parseNumber (ctrlText 120060);
+_zeroRange = parseNumber(ctrlText 120060);
 if (GVAR(currentUnit) != 2) then {
     _boreHeight = _boreHeight * 2.54;
     _bulletMass = _bulletMass * 0.06479891;
